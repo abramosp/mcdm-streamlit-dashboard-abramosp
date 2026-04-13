@@ -105,6 +105,9 @@ if st.button("Run MCDM Analysis"):
             st.dataframe(pref_df, use_container_width=True)
             
         with col2:
+            st.subheader("Ranking Table")
+            rank_df = pd.DataFrame(zip(*ranks), columns=selected_method_names, index=alts_names).astype(int)
+            st.dataframe(rank_df, use_container_width=True)
         # --- (NEW GRAPHICS PART) ---
         st.divider()
         col_plot1, col_plot2 = st.columns(2)
