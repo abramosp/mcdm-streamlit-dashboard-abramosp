@@ -105,12 +105,18 @@ if st.button("Run MCDM Analysis"):
             st.dataframe(pref_df, use_container_width=True)
             
         with col2:
-            st.subheader("Ranking Table")
-            rank_df = pd.DataFrame(zip(*ranks), columns=selected_method_names, index=alts_names).astype(int)
-            st.dataframe(rank_df, use_container_width=True)
+        # --- (NEW GRAPHICS PART) ---
+        st.divider()
+        col_plot1, col_plot2 = st.columns(2)
 
-        # Plotting the polar chart
-        st.subheader("Polar Ranking Plot")
-        fig, ax = plt.subplots(figsize=(7, 7), dpi=150, tight_layout=True, subplot_kw=dict(projection='polar'))
-        visuals.polar_plot(ranks, labels=selected_method_names, legend_ncol=2, ax=ax)
-        st.pyplot(fig)
+        with col_plot1:
+            st.subheader("Polar Ranking Plot")
+            fig1, ax1 = plt.subplots(figsize=(7, 7), dpi=100, tight_layout=True, subplot_kw=dict(projection='polar'))
+            visuals.polar_plot(ranks, labels=selected_method_names, legend_ncol=2, ax=ax1)
+            st.pyplot(fig1)
+
+        with col_plot2:
+            st.subheader("Bar Ranking Plot")
+            fig2, ax2 = plt.subplots(figsize=(7, 7), dpi=100, tight_layout=True)
+            visuals.ranking_plot(ranks, labels=selected_method_names, ax=ax2)
+            st.pyplot(fig2)  
