@@ -121,5 +121,5 @@ if st.button("Run MCDM Analysis"):
         with col_plot2:
             st.subheader("Bar Ranking Plot")
             fig2, ax2 = plt.subplots(figsize=(7, 7), dpi=100, tight_layout=True)
-  #          visuals.ranking_plot(ranks, labels=selected_method_names, ax=ax2)
+            visuals.ranking_bar(ranks, labels=selected_method_names, ax=ax2)
             st.pyplot(fig2)  
